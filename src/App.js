@@ -14,8 +14,9 @@ class App extends React.Component {
   this.getSearch = this.getSearch.bind(this)
   }
   componentDidMount() {
+    console.log(process.env.REACT_APP_API_KEY)
      this.setState({ loading: true });
-    let key = "ADxpj2PduRwoVbtLqUWlGhOCkfvjMah-40KwD5TFaAhGrZDa";
+    let key = `${process.env.REACT_APP_API_KEY}`;
     fetch(
       `https://api.currentsapi.services/v1/latest-news?language=en&apiKey=${key}`
     )
@@ -30,7 +31,7 @@ class App extends React.Component {
 getNews(country){
 
   this.setState({ loading: true });
-    let key = "ADxpj2PduRwoVbtLqUWlGhOCkfvjMah-40KwD5TFaAhGrZDa";
+    let key = `${process.env.REACT_APP_API_KEY}`;
     fetch(
       `https://api.currentsapi.services/v1/search?country=${country}&language=en&apiKey=${key}`
     )
@@ -48,7 +49,7 @@ this.setState({
  
 getSearch(){
   this.setState({ loading: true });
-  let key = "ADxpj2PduRwoVbtLqUWlGhOCkfvjMah-40KwD5TFaAhGrZDa";
+  let key = `${process.env.REACT_APP_API_KEY}`;
 fetch(
   `https://api.currentsapi.services/v1/search?keywords=${this.state.searchValue}&language=en&apiKey=${key}`)
   .then(resp => resp.json())
