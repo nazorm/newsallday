@@ -14,7 +14,6 @@ class App extends React.Component {
   this.getSearch = this.getSearch.bind(this)
   }
   componentDidMount() {
-    console.log(process.env.REACT_APP_API_KEY)
      this.setState({ loading: true });
     let key = `${process.env.REACT_APP_API_KEY}`;
     fetch(
@@ -23,7 +22,7 @@ class App extends React.Component {
     .then(resp => resp.json())
     .then((data) =>{
       this.setState({ newsData: data.news, loading: false });
-      console.log('here')
+     
     })
   }
 
