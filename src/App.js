@@ -8,8 +8,9 @@ class App extends React.Component {
     this.state = {
       newsData: [],
       loading: false,
+      searchValue: '',
     };
-  
+  this.getSearchValue = this.getSearchValue.bind(this)
   this.getSearch = this.getSearch.bind(this)
   }
   componentDidMount() {
@@ -25,14 +26,7 @@ class App extends React.Component {
     })
   }
 
-  // display(d) {
-  //   this.setState(() => {
-  //     return {
-  //       newsData:  d
-  //     };
-  //   });
-
-  // }
+  
 getNews(country){
 
   this.setState({ loading: true });
@@ -45,13 +39,18 @@ getNews(country){
         this.setState({ newsData: data.news, loading: false });
       });
 }
+getSearchValue(e){
+e.preventDefault()
+this.setState({
+  searchValue : e.target.value,
+})
+}
  
 getSearch(){
   this.setState({ loading: true });
   let key = "ADxpj2PduRwoVbtLqUWlGhOCkfvjMah-40KwD5TFaAhGrZDa";
-  let searchTopic = document.querySelector('.searchTopic').value
 fetch(
-  `https://api.currentsapi.services/v1/search?keywords=${searchTopic}&language=en&apiKey=${key}`)
+  `https://api.currentsapi.services/v1/search?keywords=${this.state.searchValue}&language=en&apiKey=${key}`)
   .then(resp => resp.json())
   .then((data)=>{
     console.log(data)
@@ -65,7 +64,7 @@ fetch(
     return (
       <div className="App">
         <h1>News</h1>
-        <input type = "text" placeholder = "search stories" className = "searchTopic"/>
+        <input type = "text" placeholder = "search stories" className = "searchTopic" onChange={this.getSearchValue}/>
         <button onClick = {this.getSearch}>Enter</button><br/>
         <button onClick={() => this.getNews('NG')}>Nigeria news</button>
         <button onClick = {()=> this.getNews('CN')}>Canada news</button>
