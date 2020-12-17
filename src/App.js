@@ -54,7 +54,6 @@ fetch(
   `https://api.currentsapi.services/v1/search?keywords=${this.state.searchValue}&language=en&apiKey=${key}`)
   .then(resp => resp.json())
   .then((data)=>{
-    console.log(data)
     document.querySelector('.searchTopic').value = ""
     this.setState({ newsData: data.news, loading: false });
   })
