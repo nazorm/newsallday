@@ -63,7 +63,7 @@ fetch(
     return (
       <div className="App">
         <h1>News</h1>
-        <input type = "text" placeholder = "search stories" className = "searchTopic" onChange={this.getSearchValue}/>
+        <input type = "text" placeholder = "Search News Keyword" className = "searchTopic" onChange={this.getSearchValue}/>
         <button onClick = {this.getSearch}>Enter</button><br/>
         <button onClick={() => this.getNews('NG')}>Nigeria news</button>
         <button onClick = {()=> this.getNews('CN')}>Canada news</button>
